@@ -2,11 +2,12 @@
 Binance Exchange data to .csv. Iterates over date range using `req_size` step. Makes a bunch of requests, builds up a python object, converts object to a pandas `DataFrame` and saves to a `.csv`.
 
 
-### Format
- Columns:
- ```
- ['time', 'low', 'high', 'open', 'close', 'volume']
- ```
+### Setup
+You must create one python file, `config.py`. Follow the format below:
+```python
+api_key = "xxx"
+api_secret = "xxx"
+```
 
 ### Execution
 In the following example the `req_size` is 1 day so each API request will fetch 1 day of day. The `interval` is 12 Hours. This means each request should return 2 data points. Our start date and end date are given in milliseconds UNIX time. They are exactly two days apart `06/19/2018 @ 9:32am (UTC)` and `06/21/2018 @ 9:32am (UTC)`. 2 days, 12 hour intervals gives us 4 data points. Each of dimension 6 in the format described above.
@@ -30,6 +31,12 @@ def example():
       [1529539200, 6680.0, 6795.0, 6763.21, 6732.85, 12833.964411]
   ]
 ```
+
+### Ouput CSV Format
+ Columns:
+ ```
+ ['time', 'low', 'high', 'open', 'close', 'volume']
+ ```
 
 ### Remarks
 I plan to write a CLI for this.
